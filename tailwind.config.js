@@ -6,12 +6,12 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        colors: {
-            "base-bg": "#bccee0",
-            "nav-bg": "#1D212D",
-            "nav-selected": "#2C3245",
-        },
         extend: {
+            colors: {
+                "base-bg": "#f5f5f5",
+                "nav-bg": "#1D212D",
+                "nav-selected": "#2C3245",
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":

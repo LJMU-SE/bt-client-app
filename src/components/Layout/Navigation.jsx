@@ -29,19 +29,27 @@ export default function Navigation({ activePage }) {
                 />
             </div>
 
-            <div className="w-full h-full flex flex-col items-center justify-start">
-                <NavLink id={"dashboard"} href="/" icon={<DiGhostSmall />} />
+            <div className="w-full h-full flex flex-col items-center justify-start overflow">
+                <NavLink
+                    id={"dashboard"}
+                    href="/"
+                    icon={<DiGhostSmall size={20} />}
+                />
                 <NavLink
                     id={"capturing"}
                     href="/capturing"
-                    icon={<FaCamera />}
+                    icon={<FaCamera size={20} />}
                 />
-                <NavLink id={"admin"} href="/admin" icon={<FaHashnode />} />
+                <NavLink
+                    id={"admin"}
+                    href="/admin"
+                    icon={<FaHashnode size={20} />}
+                />
                 <div className="flex-grow" />
                 <NavLink
                     id={"settings"}
                     href="/settings"
-                    icon={<IoSettingsSharp />}
+                    icon={<IoSettingsSharp size={20} />}
                 />
             </div>
         </nav>
