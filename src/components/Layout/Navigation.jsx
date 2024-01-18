@@ -1,20 +1,26 @@
-function NavLink({ href, children, active }) {
-    return (
-        <li
-            className={`w-full h-12 flex items-center justify-start px-5 transition-all ${
-                active ? "" : ""
-            }`}
-        >
-            <a href={href} className="text-white">
-                {children}
-            </a>
-        </li>
-    );
-}
+import { DiGhostSmall } from "react-icons/di";
+import { FaCamera } from "react-icons/fa";
+import { FaHashnode } from "react-icons/fa6";
+import { IoSettingsSharp } from "react-icons/io5";
 
-export default function Navigation() {
+export default function Navigation({ activePage }) {
+    function NavLink({ href, children, id, icon }) {
+        const active = activePage == id ? true : false;
+
+        return (
+            <a
+                href={href}
+                className={`w-20 h-12 flex items-center justify-center px-5 transition-all hover:bg-nav-selected ${
+                    active ? "bg-nav-selected" : ""
+                } text-white`}
+            >
+                {icon}
+            </a>
+        );
+    }
+
     return (
-        <nav className="w-full max-w-48 bg-nav-bg h-screen flex flex-col items-center justify-start">
+        <nav className="w-20 max-w-20 bg-nav-bg h-screen flex flex-col items-center justify-start overflow-hidden">
             <div className="w-full h-20 flex items-center justify-center">
                 <img
                     className="max-h-10"
@@ -22,12 +28,22 @@ export default function Navigation() {
                     alt="LJMU-SE Logo"
                 />
             </div>
-            <ul className="w-full flex flex-col items-center justify-start">
-                <NavLink href="/">Dashboard</NavLink>
-                <NavLink href="/capturing">Capturing</NavLink>
-                <NavLink href="/admin">Node Management</NavLink>
-                <NavLink href="/settings">Settings</NavLink>
-            </ul>
+
+            <div className="w-full h-full flex flex-col items-center justify-start">
+                <NavLink id={"dashboard"} href="/" icon={<DiGhostSmall />} />
+                <NavLink
+                    id={"capturing"}
+                    href="/capturing"
+                    icon={<FaCamera />}
+                />
+                <NavLink id={"admin"} href="/admin" icon={<FaHashnode />} />
+                <div className="flex-grow" />
+                <NavLink
+                    id={"settings"}
+                    href="/settings"
+                    icon={<IoSettingsSharp />}
+                />
+            </div>
         </nav>
     );
 }
