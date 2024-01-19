@@ -35,3 +35,7 @@ body {
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
 }
+
+.capture-setting-button.active {
+    background-color: theme("colors.accent-primary") !important;
+}

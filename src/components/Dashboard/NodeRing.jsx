@@ -81,7 +81,7 @@ export default function NodeRing() {
                     />
                     <circle
                         fill="transparent"
-                        className="progress-ring__circle stroke-current text-[#ff9000]"
+                        className="progress-ring__circle stroke-current text-accent-primary"
                         strokeWidth={strokeWidth}
                         strokeDasharray={circumference + " " + circumference}
                         strokeDashoffset={offset}

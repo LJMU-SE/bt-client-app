@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function BaseLayout({ title, pageID, children }) {
+export default function BaseLayout({ pageID, children }) {
     return (
         <main className={`w-full h-screen ${inter.className} flex`}>
             <Navigation activePage={pageID} />
