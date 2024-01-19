@@ -11,6 +11,7 @@ module.exports = {
                 "base-bg": "#f5f5f5",
                 "nav-bg": "#1D212D",
                 "nav-selected": "#2C3245",
+                "accant-primary": "#ff9000",
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
