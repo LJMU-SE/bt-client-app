@@ -42,8 +42,8 @@ export default function Navigation({ activePage }) {
                     icon={<FaCamera size={20} />}
                 />
                 <NavLink
-                    id={"admin"}
-                    href="/admin"
+                    id={"nodes"}
+                    href="/nodes"
                     icon={<FaHashnode size={20} />}
                 />
                 <div className="flex-grow" />
