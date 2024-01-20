@@ -21,7 +21,7 @@ export default function Navigation({ activePage }) {
     }
 
     return (
-        <nav className="w-20 max-w-20 bg-nav-bg h-screen flex flex-col items-center justify-start overflow-hidden">
+        <nav className="w-20 max-w-20 bg-nav-bg h-screen flex flex-col items-center justify-start overflow-hidden select-none">
             <div className="w-full h-20 flex items-center justify-center">
                 <img
                     className="max-h-10"
