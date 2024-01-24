@@ -14,12 +14,12 @@ export default function NodeRing() {
     const [connectedCount, setConnectedCount] = useState(initialConnectedCount);
 
     const [progress, setProgress] = useState(
-        Math.round((initialConnectedCount / sockets.length) * 100)
+        Math.round((initialConnectedCount / sockets.length) * 100) || 0
     );
 
     const [offset, setOffset] = useState(
         circumference - (progress / 100) * circumference
-    ); // Set offset to the current connected number of nodes
+    );
 
     function setProgressRing(count) {
         const newProgress = Math.round((count / sockets.length) * 100);
@@ -34,6 +34,7 @@ export default function NodeRing() {
             const newCount = oldCount + 1;
             return newCount <= sockets.length ? newCount : oldCount;
         });
+
         setProgressRing(
             connectedCount + 1 <= sockets.length
                 ? connectedCount + 1
@@ -61,7 +62,7 @@ export default function NodeRing() {
                 socket.off("disconnect", onSocketDisconnect);
             });
         };
-    }, []);
+    }, [sockets]);
 
     return (
         <div className="h-full w-full flex flex-col items-center justify-center py-5">

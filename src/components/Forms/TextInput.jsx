@@ -9,9 +9,11 @@ const TextInput = forwardRef(({ label, ...props }, ref) => {
                 </label>
             ) : null}
             <input
-                className="w-full border border-gray-300 p-2 mb-2 mt-1 focus:outline-none focus:ring-1 focus:ring-accent-primary"
+                class={`w-full border border-gray-300 p-2 mb-2 mt-1 focus:outline-none focus:ring-1 focus:ring-accent-primary ${
+                    props.className || ""
+                }`}
                 ref={ref}
-                {...props}
+                {...{ ...props, className: undefined }}
             />
         </div>
     );

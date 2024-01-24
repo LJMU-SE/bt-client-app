@@ -79,7 +79,7 @@ export default function NodeBox({ node }) {
 
     return (
         <div
-            className={`bg-[#FFFFFF] rounded-md border border-solid border-[${borderColour}] flex-grow self-stretch w-full flex flex-col`}
+            className={`bg-[#FFFFFF] rounded-md border border-solid border-[${borderColour}] w-full self-stretch flex flex-col`}
         >
             <div
                 className={`px-5 py-3 border-b border-[${borderColour}] border-solid  cursor-pointer`}

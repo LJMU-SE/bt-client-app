@@ -12,7 +12,7 @@ module.exports = {
                 "nav-bg": "#1D212D",
                 "nav-selected": "#2C3245",
                 "accent-primary": "#ff9000",
-                "accent-hover": "#F88D02",
+                "accent-hover": "#E88402",
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

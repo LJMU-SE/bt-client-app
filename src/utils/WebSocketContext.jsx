@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import nodes from "@/nodes";
 import { io } from "socket.io-client";
 
 const WebSocketContext = createContext();
@@ -29,10 +28,49 @@ export const useWebSocket = (address) => {
 export const WebSocketProvider = ({ children }) => {
     const [sockets, setSockets] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [nodes, setNodes] = useState([]);
 
     useEffect(() => {
-        // Loop through the nodes
+        const storedStart = localStorage.getItem("startAddress");
+        const storedEnd = localStorage.getItem("endAddress");
+
+        if (!storedStart || !storedEnd) {
+            // Handle the case where start and end addresses are not stored
+            console.error(
+                "Start and/or end addresses not found in localStorage"
+            );
+
+            // You might want to provide a way to set these values
+            setIsLoading(false);
+        } else {
+            const start = parseInt(storedStart);
+            const end = parseInt(storedEnd);
+            let nodes = [];
+
+            for (let i = start; i <= end; i++) {
+                if (nodes.includes(`10.0.0.${i}`)) continue;
+                setNodes((oldNodes) => {
+                    return [...oldNodes, `10.0.0.${i}`];
+                });
+            }
+        }
+        // Cleanup function
+        return () => {
+            sockets.forEach((socket) => socket.close());
+
+            setNodes([]);
+            setSockets([]);
+        };
+    }, []);
+
+    useEffect(() => {
         nodes.forEach((address) => {
+            console.log(address);
+            // Check if socket with the same address already exists
+            if (sockets.some((socket) => socket._opts.hostname === address)) {
+                return; // Continue to the next iteration
+            }
+
             // Connect to socket
             const socket = io(`http://${address}:8080`, {
                 connect_timeout: 4000,
@@ -41,7 +79,9 @@ export const WebSocketProvider = ({ children }) => {
             });
 
             // Add socket to array
-            setSockets((oldSockets) => [...oldSockets, socket]);
+            setSockets((oldSockets) => {
+                return [...oldSockets, socket];
+            });
 
             // Create event to listen for connection
             socket.on("connect", () => {
@@ -53,14 +93,7 @@ export const WebSocketProvider = ({ children }) => {
                 console.log(`🔴 | Disconnected from node ${address}`);
             });
         });
-
-        // Cleanup function
-        return () => {
-            sockets.forEach((socket) => {
-                socket.close();
-            });
-        };
-    }, []);
+    }, [nodes]);
 
     useEffect(() => {
         // Check if the required number of sockets is reached

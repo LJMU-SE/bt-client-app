@@ -1,4 +1,4 @@
-import TextInput from "./TextInput";
+import TextInput from "../Forms/TextInput";
 
 export default function DetailsForm({ fNameRef, lNameRef, emailRef }) {
     return (
