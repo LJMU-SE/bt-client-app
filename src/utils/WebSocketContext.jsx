@@ -54,6 +54,7 @@ export const WebSocketProvider = ({ children }) => {
                 });
             }
         }
+
         // Cleanup function
         return () => {
             sockets.forEach((socket) => socket.close());
@@ -65,7 +66,6 @@ export const WebSocketProvider = ({ children }) => {
 
     useEffect(() => {
         nodes.forEach((address) => {
-            console.log(address);
             // Check if socket with the same address already exists
             if (sockets.some((socket) => socket._opts.hostname === address)) {
                 return; // Continue to the next iteration
