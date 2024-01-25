@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }) {
     return (
         <WebSocketProvider>
             <Toaster position="top-right" reverseOrder={true} />
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
         </WebSocketProvider>
     );
 }

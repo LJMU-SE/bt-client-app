@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import DetailsForm from "@/components/Capture/DetailsForm";
 import CaptureSettingsForm from "@/components/Capture/CameraSettingsForm";
 import CaptureTypeForm from "@/components/Capture/CaptureTypeForm";
+import { useRouter } from "next/router";
 
 export default function Capture() {
     const fNameRef = useRef();
@@ -15,21 +16,14 @@ export default function Capture() {
 
     const [captureType, setCaptureType] = useState("360");
 
+    const router = useRouter();
+
     function onFormSubmit(e) {
         e.preventDefault();
 
-        console.log("Form Submitted", {
-            userDetails: {
-                firstName: fNameRef.current.value,
-                lastName: lNameRef.current.value,
-                email: emailRef.current.value,
-            },
-            captureDetails: {
-                iso: isoRef.current.value,
-                shutterSpeed: shutterSpeedRef.current.value,
-                captureType,
-            },
-        });
+        router.push(
+            `/process?captureType=${captureType}&iso=${isoRef.current.value}&shutterSpeed=${shutterSpeedRef.current.value}&firstName=${fNameRef.current.value}&lastName=${lNameRef.current.value}&email=${emailRef.current.value}`
+        );
     }
     return (
         <BaseLayout pageID={"capture"}>
