@@ -13,6 +13,8 @@ export default function Capture() {
 
     const isoRef = useRef();
     const shutterSpeedRef = useRef();
+    const resXRef = useRef();
+    const resYRef = useRef();
 
     const [captureType, setCaptureType] = useState("360");
 
@@ -22,7 +24,7 @@ export default function Capture() {
         e.preventDefault();
 
         router.push(
-            `/process?captureType=${captureType}&iso=${isoRef.current.value}&shutterSpeed=${shutterSpeedRef.current.value}&firstName=${fNameRef.current.value}&lastName=${lNameRef.current.value}&email=${emailRef.current.value}`
+            `/process?captureType=${captureType}&iso=${isoRef.current.value}&shutterSpeed=${shutterSpeedRef.current.value}&firstName=${fNameRef.current.value}&lastName=${lNameRef.current.value}&email=${emailRef.current.value}&x=${resXRef.current.value}&y=${resYRef.current.value}`
         );
     }
     return (
@@ -47,6 +49,8 @@ export default function Capture() {
                         <CaptureSettingsForm
                             isoRef={isoRef}
                             shutterSpeedRef={shutterSpeedRef}
+                            resXRef={resXRef}
+                            resYRef={resYRef}
                         />
                     </DashBox>
                     <DashBox title={"Capture Type"} full={true}>
